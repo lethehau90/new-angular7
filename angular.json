@@ -19,13 +19,32 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "favicon.ico",
+                "input": "src",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/site.css",
+              "src/assets/sass/bootflat-admin.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-1.10.1.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/icheck.min.js",
+              "src/assets/js/jquery.fs.stepper.min.js",
+              "src/assets/js/jquery.fs.selecter.min.js",
+              "src/assets/js/application.js",
+              "src/assets/js/html5shiv.js",
+              "src/assets/js/respond.min.js"
+            ]
           },
           "configurations": {
             "production": {
