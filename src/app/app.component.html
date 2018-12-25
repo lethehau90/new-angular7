@@ -6,7 +6,13 @@
   <div class="row row-offcanvas row-offcanvas-left">
     <side-bar></side-bar>
     <div class="col-xs-12 col-sm-9 content">
-        <router-outlet></router-outlet>
+      <div class="panel panel-default">
+        <panel-heading></panel-heading>
+        <div class="panel-body">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- panel body -->
+      </div>
     </div><!-- content -->
   </div>
 </div>
@@ -14,4 +20,3 @@
 <!--footer-->
 
 <footer></footer>
-

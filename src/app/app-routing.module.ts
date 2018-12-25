@@ -15,6 +15,11 @@ const routes: Routes = [
   {
     path : 'dashboad',
     loadChildren : './modules/dashboard/dashboard.module#DashboardModule'
+  },
+
+  {
+    path : 'login',
+    loadChildren : './modules/login/login.module#LoginModule'
   }
 
 ];
