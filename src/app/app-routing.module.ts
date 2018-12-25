@@ -4,28 +4,28 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo : "dashboard",
-    pathMatch : 'full'
+    redirectTo: "login",
+    pathMatch: 'full'
   },
   {
-    path : 'index',
-    redirectTo : 'dashboard',
-    pathMatch : 'full'
+    path: 'index',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path : 'dashboad',
-    loadChildren : './modules/dashboard/dashboard.module#DashboardModule'
+    path: 'login',
+    loadChildren: './modules/login/login.module#LoginModule'
   },
 
   {
-    path : 'login',
-    loadChildren : './modules/login/login.module#LoginModule'
+    path: 'main',
+    loadChildren: './modules/main/main.module#MainModule',
   }
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

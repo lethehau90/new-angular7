@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutModule } from './modules/layout/layout.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -12,10 +10,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    LayoutModule,
-
-    DashboardModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
