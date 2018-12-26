@@ -28,7 +28,6 @@ export class PanelHeadingComponent implements OnDestroy, OnInit {
         }
     }
 
-
     ngOnDestroy(): void {
 
     }

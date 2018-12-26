@@ -4,14 +4,25 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      tapToDismiss: true,
+      maxOpened: 1
+    }),
     BrowserModule,
-    AppRoutingModule,  ],
+    HttpClientModule,
+    AppRoutingModule,
+  ],
   providers: [
     { provide: LocationStrategy, useClass: PathLocationStrategy }
   ],

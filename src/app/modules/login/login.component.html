@@ -1,0 +1,45 @@
+<div class="container">
+    <form class="form-signin" role="form" [formGroup]="loginForm">
+        <h3 class="form-signin-heading">Please sign in</h3>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </div>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username"
+                    autocomplete="off" formControlName="username" />
+            </div>
+            <ng-container *ngIf="!loginForm.controls['username'].value && loginForm.controls['username'].touched; else invalidUsername">
+                <small class="error-msg">
+                    Username is required
+                </small>
+            </ng-container>
+            <ng-template #invalidUsername>
+                <small class="error-msg" *ngIf="loginForm.controls['username'].value && loginForm.controls['username'].value.trim().length === 0">
+                    Username is invalid
+                </small>
+            </ng-template>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class=" glyphicon glyphicon-lock "></i>
+                </div>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                    autocomplete="off" formControlName="password" />
+            </div>
+            <ng-container *ngIf="!loginForm.controls['password'].value && loginForm.controls['password'].touched; else invalidPassword">
+                <small class="error-msg">
+                    Password is required
+                </small>
+            </ng-container>
+            <ng-template #invalidPassword>
+                <small class="error-msg" *ngIf="loginForm.controls['password'].value && loginForm.controls['password'].value.trim().length === 0">
+                    Password is invalid
+                </small>
+            </ng-template>
+        </div>
+        <button [disabled] = "!loginForm.valid" class="btn btn-lg btn-primary btn-block" (click)="OnSubmit()">Sign in</button>
+    </form>
+</div>

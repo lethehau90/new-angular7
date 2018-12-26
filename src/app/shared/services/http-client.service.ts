@@ -1,211 +1,96 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap, finalize } from 'rxjs/operators';
 import { CacheItem } from './../models/cache-item.model';
+import { LoadingService } from './loading.service';
+import { NotifierService } from './notifier.service';
+import { MESSAGE_SERVER_ERROR } from '../shared.constant';
+import * as _ from 'lodash';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
 
-  public cache: CacheItem[] = [];
+  baseApiUrl: string = environment.apiHost;
 
   constructor(
-    private http: HttpClient
+    private _httpClient: HttpClient,
+    private _loadingService: LoadingService,
+    private _notifierService: NotifierService
   ) { }
 
-  /**
-   * @param url: string
-   * @param obj {params, headers}
-   * params {k1:v1, k2:v2....}
-   * headers {k1:v1, k2:v2....}
-   * @return Callback Function
-   */
-  doGet(url: string, obj?: any, hideLoading: boolean = false, isCache: boolean = false): Observable<any> {
-    const cachedItem: CacheItem = this.getCachedItem(url);
-    if (cachedItem !== undefined && isCache) {
-      return of(cachedItem.data);
-    }
-    return this.request('GET', url, obj, null, hideLoading, isCache);
+  get(api: string, params?: Object): Observable<any> {
+    return this._httpClient.get(this.baseApiUrl + api, { params: params ? this._parseParamURL(params) : null });
   }
 
-  doPostWithFile(url: string, postData: any, obj?: any, hideLoading: boolean = false): Observable<any> {
-    const formData = this.getModelAsFormData(postData);
-    if (obj && typeof obj.headers !== 'undefined') {
-      delete obj.headers['Content-Type'];
-    }
-
-    return this.doPost(url, formData, obj, hideLoading)
-      .pipe(
-        map(res => this.extractData(res, url, 'POST')),
-        catchError(this.handleError)
-      );
+  put(api: string, data: any, options?: any): Observable<any> {
+    return this._httpClient.put(this.baseApiUrl + api, data, options);
   }
 
-  private getModelAsFormData(data: any) {
-    const dataAsFormData = new FormData();
-    // create instance vars to store keys and final output
-    const keyArr: any[] = Object.keys(data);
-    // loop through the object,
-    // pushing values to the return array
-    keyArr.forEach((key: any) => {
-      dataAsFormData.append(key, data[key]);
-    });
-    return dataAsFormData;
+  post(api: string, data: any, options?: any): Observable<any> {
+    return this._httpClient.post(this.baseApiUrl + api, data, options);
   }
 
-  /**
-   * @param url: string
-   * @param data: body data
-   * @param obj {params, headers}
-   * params {k1:v1, k2:v2....}
-   * headers {k1:v1, k2:v2....}
-   * @return Callback Function
-   */
-  doPost(
-    url: string,
-    data?: any,
-    obj?: any,
-    hideLoading: boolean = false
-  ): Observable<any> {
-    return this.request('POST', url, obj, data, hideLoading);
+  remove(api: string, options?: any): Observable<any> {
+    return this._httpClient.put(this.baseApiUrl + api, options);
   }
 
-  /**
-   * @param url: string
-   * @param data: body data
-   * @param obj {params, headers}
-   * params {k1:v1, k2:v2....}
-   * headers {k1:v1, k2:v2....}
-   * @return Callback Function
-   */
-  doPut(
-    url: string,
-    data?: any,
-    obj?: any,
-    hideLoading: boolean = false
-  ): Observable<any> {
-    return this.request('PUT', url, obj, data, hideLoading);
+  delete(api: string, options?: any): Observable<any> {
+    return this._httpClient.delete(this.baseApiUrl + api, options);
   }
-
-  /**
-   * @param url: string
-   * @param obj {params, headers}
-   * params {k1:v1, k2:v2....}
-   * headers {k1:v1, k2:v2....}
-   * @return Callback Function
-   */
-  doDelete(
-    url: string,
-    obj?: any,
-    hideLoading: boolean = false
-  ): Observable<any> {
-    return this.request('DELETE', url, obj, hideLoading);
-  }
-
-  private request(
-    requestMethod: string = 'GET',
-    url: string,
-    obj?: any,
-    data?: any,
-    hideLoading: boolean = false,
-    isCache: boolean = false
-  ) {
-    const options: any = {};
-    options.observe = 'response';
-    if (obj && typeof obj.params !== 'undefined') {
-      let httpParams = new HttpParams();
-      Object.entries(obj.params).forEach(
-        ([key, value]) => (httpParams = httpParams.append(key, String(value)))
-      );
-      options.params = httpParams;
-    }
-
-    if (obj && typeof obj.headers !== 'undefined') {
-      options.headers = this.createHeders(obj.headers, hideLoading);
-    } else {
-      let header = new HttpHeaders();
-      if (hideLoading) {
-        header = header.set('hideLoading', 'true');
-      }
-      options.headers = header;
-    }
-
-    // DO NOT CHECK Object.keys(data).length > 0 HERE
-    // BECAUSE WHEN DATA created by type FormData,
-    // Object.keys(data).length ALWAYS == 0
-    // REF: https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-    if (data) {
-      options.body = data;
-    }
-
-    if (obj && obj.responseType) {
-      options.responseType = obj.responseType;
-    }
-    return this.http.request(requestMethod, url, options).pipe(
-      map(res => this.extractData(res, url, requestMethod, isCache)),
-      catchError(this.handleError)
+  handleRequest(requsetFn: Observable<any>) {
+    this._loadingService.showLoading();
+    return requsetFn.pipe(
+      tap(
+        response => { },
+        error => {
+          this.handleError(error);
+        }
+      ),
+      finalize(() => {
+        this._loadingService.hideLoading();
+      })
     );
   }
-
-  /**
-   * @param Object headers : headers {k1:v1, k2:v2....}
-   */
-  private createHeders(headers, hideLoading) {
-    let header = new HttpHeaders(); // { 'Content-Type': 'application/json' }
-    Object.entries(headers).forEach(([key, value]) => {
-      header = header.append(key, String(value));
-    });
-    if (hideLoading) {
-      header = header.set('hideLoading', 'true');
-    }
-    return header;
-  }
-
-  private extractData(res: any, url: string = '', requestMethod: string = 'GET', isCache: boolean = false) {
-    let result = null;
-    try {
-      if (
-        typeof res.constructor !== 'undefined' &&
-        res.constructor.name === 'HttpResponse'
-      ) {
-        result = res.body;
-      } else {
-        result = res;
-      }
-    } catch (e) {
-      result = res._body;
-    }
-
-    if (requestMethod === 'GET' && isCache) {
-      this.cacheData(url, result);
-    }
-
-    return result;
-  }
-
-  private cacheData(url: string = '', data: any = null) {
-    let cachedItem: CacheItem = this.getCachedItem(url);
-    if (!cachedItem) {
-      cachedItem = new CacheItem();
-      cachedItem.url = url;
-      this.cache.push(cachedItem);
-    }
-    cachedItem.data = data;
-  }
-
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      errMsg = '';
+  handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ProgressEvent) {
+      this._notifierService.showToastrErrorMessage(MESSAGE_SERVER_ERROR.NETWORK);
     } else {
-      errMsg = error.message ? error.message : error.toString();
+      if (error.status === 404) {
+        this._notifierService.showToastrErrorMessage(error.statusText);
+      } else if (error.status === 500 || error.status === 503) {
+        this._notifierService.showToastrErrorMessageTOP(MESSAGE_SERVER_ERROR.REFRESH, MESSAGE_SERVER_ERROR.RESPOND);
+      } else {
+        if (error.error.message) {
+          this._notifierService.showToastrErrorMessage(error.error.message);
+        } else {
+          this._notifierService.showToastrErrorMessage(error.error.error.message);
+        }
+      }
     }
-    return throwError(errMsg);
+    return throwError('Something bad happened; please try again later.');
   }
+  private _parseParamURL(params: Object) {
+    let urlParams = new HttpParams();
 
-  private getCachedItem(url: string): CacheItem {
-    return this.cache.find(item => item.url === url);
+    for (const prop in params) {
+      if (params.hasOwnProperty(prop)) {
+        if (!params[prop] || params[prop].length === 0) {
+          delete params[prop];
+        } else {
+          if (_.isArray(params[prop])) {
+            params[prop].forEach(element => {
+              urlParams = urlParams.append(prop, String(element));
+            });
+          } else {
+            urlParams = urlParams.append(prop, String(params[prop]));
+          }
+        }
+      }
+    }
+    return urlParams;
   }
 }
