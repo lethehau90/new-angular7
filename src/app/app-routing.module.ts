@@ -18,14 +18,14 @@ const routes: Routes = [
   },
 
   {
-    path: 'main',
+    path: 'page',
     loadChildren: './modules/main/main.module#MainModule',
   }
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
