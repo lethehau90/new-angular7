@@ -18,6 +18,7 @@ import { EmitterService } from './services/emitter.service';
 import { HttpClientService } from './services/http-client.service';
 import { WindowRef } from './services/window-ref.service';
 import { CachingService } from './services/caching.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
     imports: [
@@ -64,7 +65,8 @@ export class SharedModule {
           LoadingService,
           NotifierService,
           WindowRef,
-          CachingService
+          CachingService,
+          AuthGuard
         ]
       };
     }

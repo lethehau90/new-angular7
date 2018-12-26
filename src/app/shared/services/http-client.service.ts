@@ -56,6 +56,7 @@ export class HttpClientService {
     );
   }
   handleError(error: HttpErrorResponse) {
+    debugger;
     if (error.error instanceof ProgressEvent) {
       this._notifierService.showToastrErrorMessage(MESSAGE_SERVER_ERROR.NETWORK);
     } else {
