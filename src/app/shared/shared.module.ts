@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, ModuleWithProviders } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -12,6 +12,12 @@ import { ModalModule, PaginationModule, PopoverModule } from 'ngx-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgxMaskModule } from 'ngx-mask';
+import { LoadingService } from './services/loading.service';
+import { NotifierService } from './services/notifier.service';
+import { EmitterService } from './services/emitter.service';
+import { HttpClientService } from './services/http-client.service';
+import { WindowRef } from './services/window-ref.service';
+import { CachingService } from './services/caching.service';
 
 @NgModule({
     imports: [
@@ -48,4 +54,18 @@ import { NgxMaskModule } from 'ngx-mask';
     ]
 })
 
-export class ShareModule { }
+export class SharedModule {
+    static forRoot(): ModuleWithProviders {
+      return {
+        ngModule: SharedModule,
+        providers: [
+          EmitterService,
+          HttpClientService,
+          LoadingService,
+          NotifierService,
+          WindowRef,
+          CachingService
+        ]
+      };
+    }
+  }
