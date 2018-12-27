@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClientService } from 'src/app/shared/services/http-client.service';
 import { IloginModel } from '../model/login.model';
 import { Observable } from 'rxjs';
 import { ITokenModel } from '../model/token.model';
+import { HttpClientService } from 'src/app/shared/helpers/http-client.service';
 
 @Injectable()
 export class LoginService {

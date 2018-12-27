@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { access_token, page_login } from '../shared.constant';
-import { CachingService } from './caching.service';
+import { CachingService } from '../services/caching.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

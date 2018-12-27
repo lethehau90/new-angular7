@@ -6,3 +6,33 @@
     margin: 5px 0;
     color: #e30a0a;
 }
+
+div.block-ui-wrapper {
+    z-index: 30002;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+div.block-ui-wrapper .loader {
+    border-color: #fff;
+    border-left-color: #7bbd1e;
+}
+
+div.block-ui-spinner {
+    top: 45vh;
+    position: fixed;
+}
+
+div.block-ui-spinner .message {
+    color: #7bbd1e;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: rgba(235, 235, 235, 0.4);
+    -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #d1d1d1;
+}

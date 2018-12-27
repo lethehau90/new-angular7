@@ -2,12 +2,12 @@ import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap, finalize } from 'rxjs/operators';
-import { CacheItem } from './../models/cache-item.model';
-import { LoadingService } from './loading.service';
-import { NotifierService } from './notifier.service';
+import { CacheItem } from '../models/cache-item.model';
 import { MESSAGE_SERVER_ERROR } from '../shared.constant';
 import * as _ from 'lodash';
 import { environment } from 'src/environments/environment';
+import { LoadingService } from '../services/loading.service';
+import { NotifierService } from '../services/notifier.service';
 
 @Injectable({
   providedIn: 'root'
