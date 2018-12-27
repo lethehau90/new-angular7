@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this._loginService.login(this.login).subscribe(response => {
             this.token = response;
             this._cacheService.sessionStorage.store(access_token,this.token.access_token);
+            this._cacheService.sessionStorage.store("token",this.token);
             this._router.navigate(['/page/dashboard']);
         })
     }

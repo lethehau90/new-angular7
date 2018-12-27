@@ -1,4 +1,6 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, Input } from "@angular/core";
+import { CachingService } from 'src/app/shared/services/caching.service';
+import { SIDE_BARS } from '../layout.constant';
 
 @Component({
     selector : "side-bar",
@@ -7,6 +9,8 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 })
 
 export class SideBarComponent implements OnInit, OnDestroy {
+    constructor(private _caching : CachingService){}
+    Side_Bar = SIDE_BARS;
 
     ngOnDestroy(): void {
         

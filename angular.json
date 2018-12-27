@@ -32,20 +32,24 @@
             ],
             "styles": [
               "src/assets/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/assets/css/site.css",
               "src/assets/css/styles.css",
               "src/assets/css/spinner.css",
-              "src/assets/sass/bootflat-admin.scss"
+              "src/assets/sass/bootflat-admin.scss",
+              "src/assets/css/fullcalendar.css",
+              "src/assets/css/primeng.css"
             ],
             "scripts": [
-              "src/assets/js/jquery-1.10.1.min.js",
+              "src/assets/js/jquery-3.3.1.min.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/icheck.min.js",
               "src/assets/js/jquery.fs.stepper.min.js",
               "src/assets/js/jquery.fs.selecter.min.js",
               "src/assets/js/application.js",
               "src/assets/js/html5shiv.js",
-              "src/assets/js/respond.min.js"
+              "src/assets/js/respond.min.js",
+              "src/assets/js/dropdown-menu.js"
             ]
           },
           "configurations": {
