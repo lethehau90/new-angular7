@@ -1,0 +1,33 @@
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">List User</h3>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>FullName</th>
+                  <th>UserName</th>
+                  <th>BirthDay</th>
+                  <th>Gender</th>
+                  <th>PhoneNumber</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of this.entityUser.Items">
+                  <td>{{item.FullName}}</td>
+                  <td>{{item.UserName}}</td>
+                  <td>{{item.BirthDay}}</td>
+                  <td>{{item.Gender}}</td>
+                  <td>{{item.PhoneNumber}}</td>
+                  <td><i class="glyphicon glyphicon-pencil"></i></td>
+                  <td><i class="glyphicon glyphicon-trash"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div>
+</div>

@@ -2,13 +2,13 @@
   <ul class="list-group panel">
     <li class="list-group-item"><i class="glyphicon glyphicon-align-justify"></i> <b>SIDE PANEL</b></li>
     <ng-container *ngFor="let item of Side_Bar; let indexParent = index">
-      <li *ngIf="!item.child" class="list-group-item"><a href="{{item.router}}"><i class="glyphicon glyphicon-home"></i>{{item.name}}
+      <li *ngIf="!item.child" class="list-group-item"><a [routerLink]="item.router"><i class="glyphicon glyphicon-home"></i>{{item.name}}
         </a></li>
       <a *ngIf="item.child" href="#child{{indexParent}}" class="list-group-item " data-toggle="collapse">{{item.name}}
         <span class="glyphicon glyphicon-chevron-right"></span></a>
       <div *ngIf="item.child" class="collapse" id="child{{indexParent}}">
         <ng-container *ngFor="let itemChild of item.child; let indexParent = index">
-          <a href="{{itemChild.routerChild}}" class="list-group-item">{{itemChild.nameChild}}</a>
+          <a [routerLink]="itemChild.routerChild" class="list-group-item">{{itemChild.nameChild}}</a>
         </ng-container>
       </div>
     </ng-container>

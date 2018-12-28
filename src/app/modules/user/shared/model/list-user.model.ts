@@ -1,0 +1,1 @@
+export const List_User_Paging = "/api/appuser/getlistpaging";

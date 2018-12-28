@@ -3,22 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 
 const routes: Routes = [{
-    path: '', component : MainComponent,
+    path: '', component: MainComponent,
     children: [
         { path: '', redirectTo: 'main', pathMatch: 'full' },
         {
-            path : '',
-            data : {
-                breadscrums : [
+            path: '',
+            data: {
+                breadscrums: [
                     {
-                        name : 'Main',
+                        name: 'Main',
                         router: '/main',
-                        component : MainComponent
+                        component: MainComponent
                     }
                 ]
             }
         },
-        { path: 'dashboard', loadChildren: '../dashboard/dashboard.module#DashboardModule' }
+        { path: 'dashboard', loadChildren: '../dashboard/dashboard.module#DashboardModule' },
+        { path: 'list-user', loadChildren: '../user/user.module#UserModule' }
     ]
 }]
 
