@@ -4,15 +4,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
 import { UserService } from './shared/service/user.service';
+import { GenderPipe } from 'src/app/shared/pipes/gender.pipe';
+import { PhonePipe } from 'src/app/shared/pipes/phone.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
     imports : [
         CommonModule,
         FormsModule,
+        NgxPaginationModule,
         UserRoutingModule
     ],
     exports : [],
     declarations : [
-        ListUserCompoent
+        ListUserCompoent,
+        GenderPipe,
+        PhonePipe,
     ],
     providers :[
         UserService

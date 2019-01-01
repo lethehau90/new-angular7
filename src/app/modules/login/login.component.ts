@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     constructor(
         private _loginService: LoginService,
-        private _cacheService : CachingService,
-        private _router : Router
-        ) { }
+        private _cacheService: CachingService,
+        private _router: Router
+    ) { }
 
     ngOnInit(): void {
         this._initRequestFormLogin();
@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.login.Password = this.loginForm.controls['password'].value;
         this._loginService.login(this.login).subscribe(response => {
             this.token = response;
-            this._cacheService.sessionStorage.store(access_token,this.token.access_token);
-            this._cacheService.sessionStorage.store("token",this.token);
+            this._cacheService.sessionStorage.store(access_token, this.token.access_token);
+            this._cacheService.sessionStorage.store("token", this.token);
             this._router.navigate(['/page/dashboard']);
         })
     }

@@ -21,53 +21,52 @@ import { AuthGuard } from './helpers/auth-guard.service';
 import { HttpClientService } from './helpers/http-client.service';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        NgxPaginationModule,
-        NgxDaterangepickerMd,
-        ClickOutsideModule,
-        AutoCompleteModule,
-        MatProgressSpinnerModule,
-        NgDatepickerModule,
-        PaginationModule.forRoot(),
-        ModalModule.forRoot(),
-        NgbModule.forRoot(),
-        DpDatePickerModule,
-        PopoverModule.forRoot(),
-        NgxMaskModule.forRoot(),
-    ],
-    exports: [
-        NgDatepickerModule,
-        NgxPaginationModule,
-        PaginationModule,
-        ModalModule,
-        NgbModule,
-        PopoverModule,
-        NgxMaskModule,
-        ClickOutsideModule,
-    ],
-    declarations: [
+  imports: [
+    CommonModule,
+    FormsModule,
+    NgxPaginationModule,
+    NgxDaterangepickerMd,
+    ClickOutsideModule,
+    AutoCompleteModule,
+    MatProgressSpinnerModule,
+    NgDatepickerModule,
+    PaginationModule.forRoot(),
+    ModalModule.forRoot(),
+    NgbModule.forRoot(),
+    DpDatePickerModule,
+    PopoverModule.forRoot(),
+    NgxMaskModule.forRoot(),
+  ],
+  exports: [
+    NgDatepickerModule,
+    NgxPaginationModule,
+    PaginationModule,
+    ModalModule,
+    NgbModule,
+    PopoverModule,
+    NgxMaskModule,
+    ClickOutsideModule,
+  ],
+  declarations: [
+  ],
+  providers: [
 
-    ],
-    providers: [
-        
-    ]
+  ]
 })
 
 export class SharedModule {
-    static forRoot(): ModuleWithProviders {
-      return {
-        ngModule: SharedModule,
-        providers: [
-          EmitterService,
-          HttpClientService,
-          LoadingService,
-          NotifierService,
-          WindowRef,
-          CachingService,
-          AuthGuard
-        ]
-      };
-    }
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        EmitterService,
+        HttpClientService,
+        LoadingService,
+        NotifierService,
+        WindowRef,
+        CachingService,
+        AuthGuard
+      ]
+    };
   }
+}
