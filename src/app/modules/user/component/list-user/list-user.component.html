@@ -32,7 +32,7 @@
         </ng-container>
         <ng-template #dataBody>
           <tbody>
-            <tr *ngFor="let item of this.entityUser.Items | paginate: { itemsPerPage: configPaging.pageSize, currentPage: configPaging.page, totalItems: configPaging.total }">
+            <tr *ngFor="let item of this.entityUser.Items | paginate: { itemsPerPage: entityUser.PageSize, currentPage: entityUser.PageIndex, totalItems: entityUser.TotalRows }">
               <td>{{item.FullName}}</td>
               <td>{{item.UserName}}</td>
               <td>{{item.BirthDay | date}}</td>
@@ -44,19 +44,7 @@
           </tbody>
         </ng-template>
       </table>
-      <div class="has-text-centered">
-        <pagination-controls
-        (pageChange)="getPage($event)" 
-        [previousLabel]="labels.previousLabel"
-        [nextLabel]="labels.nextLabel"
-        [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
-        [screenReaderPageLabel]="labels.screenReaderPageLabel"
-        [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
-        [directionLinks]="directionLinks"
-        [autoHide]="autoHide"
-        [responsive]="responsive"
-        ></pagination-controls>
-    </div>
+      <pagging-component (ChangeEvent)="getPageEvent($event)" [(data)]="entityUser"></pagging-component>
     </div>
   </div>
 </div>
