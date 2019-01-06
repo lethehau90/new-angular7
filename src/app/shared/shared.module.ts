@@ -19,6 +19,7 @@ import { WindowRef } from './services/window-ref.service';
 import { CachingService } from './services/caching.service';
 import { AuthGuard } from './helpers/auth-guard.service';
 import { HttpClientService } from './helpers/http-client.service';
+import { AppDropdownComponent } from './components/app-dropdown/app-dropdown.component';
 
 @NgModule({
   imports: [
@@ -46,8 +47,11 @@ import { HttpClientService } from './helpers/http-client.service';
     PopoverModule,
     NgxMaskModule,
     ClickOutsideModule,
+
+    AppDropdownComponent
   ],
   declarations: [
+    AppDropdownComponent
   ],
   providers: [
 

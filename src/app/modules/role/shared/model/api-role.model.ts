@@ -1,0 +1,1 @@
+export const apiGetListAllRole = "/api/appRole/getlistall";
