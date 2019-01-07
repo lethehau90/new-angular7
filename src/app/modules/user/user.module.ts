@@ -7,7 +7,6 @@ import { UserService } from './shared/service/user.service';
 import { GenderPipe } from 'src/app/shared/pipes/gender.pipe';
 import { PhonePipe } from 'src/app/shared/pipes/phone.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { PaggingComponent } from 'src/app/shared/components/pagging-component.ts/pagging-component';
 import { SharedModule } from 'src/app/shared/shared.module';
 @NgModule({
     imports : [
@@ -22,7 +21,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
         ListUserCompoent,
         GenderPipe,
         PhonePipe,
-        PaggingComponent
     ],
     providers :[
         UserService

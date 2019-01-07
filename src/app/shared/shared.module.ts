@@ -20,6 +20,8 @@ import { CachingService } from './services/caching.service';
 import { AuthGuard } from './helpers/auth-guard.service';
 import { HttpClientService } from './helpers/http-client.service';
 import { AppDropdownComponent } from './components/app-dropdown/app-dropdown.component';
+import { PaggingComponent } from './components/pagging-component.ts/pagging-component';
+import { SearchDropdownComponent } from './components/app-dropdown/search-dropdown/search-dropdown.component';
 
 @NgModule({
   imports: [
@@ -48,10 +50,13 @@ import { AppDropdownComponent } from './components/app-dropdown/app-dropdown.com
     NgxMaskModule,
     ClickOutsideModule,
 
+    PaggingComponent,
     AppDropdownComponent
   ],
   declarations: [
-    AppDropdownComponent
+    PaggingComponent,
+    AppDropdownComponent,
+    SearchDropdownComponent
   ],
   providers: [
 

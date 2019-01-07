@@ -9,6 +9,8 @@ import * as _ from 'lodash';
   styleUrls: ['app-dropdown.component.scss']
 })
 export class AppDropdownComponent implements OnInit, OnChanges {
+
+  @Input() data : any;
   
   ngOnChanges(changes: SimpleChanges): void {
     
