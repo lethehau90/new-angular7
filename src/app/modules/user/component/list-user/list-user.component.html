@@ -10,7 +10,8 @@
     <h3 class="panel-title">List User</h3>
   </div>
   <div>
-    <app-dropdown [data] = "this.entityUser"></app-dropdown>
+    <app-dropdown [selected]="" (selectedData)="onSelectedRoles($event)" [data]="dropDownAllRole"
+                multiple="true" placeholderMultiple="Employees" [alwaysShow]="true" icon="la la-user-secret"></app-dropdown>
   </div>
   <div class="panel-body">
     <div class="table-responsive">

@@ -38,7 +38,8 @@
               "src/assets/css/spinner.css",
               "src/assets/sass/bootflat-admin.scss",
               "src/assets/css/fullcalendar.css",
-              "src/assets/css/primeng.css"
+              "src/assets/css/primeng.css",
+              "src/assets/css/metronic.style.bundle.css"
             ],
             "scripts": [
               "src/assets/js/jquery-3.3.1.min.js",

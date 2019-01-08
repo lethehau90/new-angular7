@@ -8,6 +8,7 @@ import { GenderPipe } from 'src/app/shared/pipes/gender.pipe';
 import { PhonePipe } from 'src/app/shared/pipes/phone.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RoleService } from '../role/shared/service/role.service';
 @NgModule({
     imports : [
         CommonModule,
@@ -23,7 +24,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
         PhonePipe,
     ],
     providers :[
-        UserService
+        UserService,
+        RoleService
     ]
 })
 
