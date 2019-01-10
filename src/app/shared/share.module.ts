@@ -24,6 +24,7 @@ import { SearchDropdownComponent } from './components/app-dropdown/search-dropdo
 import { ScriptLoaderService } from './services/script-loader.service';
 import { PaggingComponent } from './components/pagging-component/pagging-component';
 import { Helpers } from './helpers/helpers';
+import { layoutComponents } from './layout/pageComponent';
 
 @NgModule({
   imports: [
@@ -52,10 +53,14 @@ import { Helpers } from './helpers/helpers';
     NgxMaskModule,
     ClickOutsideModule,
 
+    layoutComponents,
+
     PaggingComponent,
     AppDropdownComponent
   ],
   declarations: [
+    layoutComponents,
+
     PaggingComponent,
     AppDropdownComponent,
     SearchDropdownComponent
