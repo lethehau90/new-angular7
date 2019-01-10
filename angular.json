@@ -23,9 +23,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css", 
+              "src/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css",
+              "src/assets/vendors/base/vendors.bundle.css",
+              "src/assets/css/style.bundle.css"                       
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
