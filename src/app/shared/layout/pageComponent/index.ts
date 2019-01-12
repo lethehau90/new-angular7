@@ -1,12 +1,12 @@
 import { HeaderComponent } from './headerComponent/headerComponent';
-import { PageComponent } from './pageComponent';
-import { BodyComponent } from './bodyComponent/bodyComponent';
 import { FooterComponent } from './footerComponent/footerComponent';
+import { AsideMenuComponent } from './bodyComponent/asideMenuComponent/asideMenuComponent';
+import { SubHeaderComponent } from './bodyComponent/subheaderComponent/subheaderComponent';
 
 export const layoutComponents : Array<any> = [
-    PageComponent,
     HeaderComponent,
-    BodyComponent,
+    AsideMenuComponent,
+    SubHeaderComponent,
     FooterComponent
 ]
 export const entryComponents: Array<any> = [];

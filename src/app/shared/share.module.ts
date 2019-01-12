@@ -53,13 +53,13 @@ import { layoutComponents } from './layout/pageComponent';
     NgxMaskModule,
     ClickOutsideModule,
 
-    layoutComponents,
+    ...layoutComponents,
 
     PaggingComponent,
     AppDropdownComponent
   ],
   declarations: [
-    layoutComponents,
+    ...layoutComponents,
 
     PaggingComponent,
     AppDropdownComponent,

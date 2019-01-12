@@ -11,6 +11,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private _script: ScriptLoaderService,
   ) { }
+
+  private isDashBoard = false;
   ngOnDestroy(): void {
 
   }
@@ -20,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       'assets/js/scripts.bundle.js'], true).then((result) => {
         this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js'], true);
       });
+      this.isDashBoard = false;
   }
   title = 'my-app';
 
