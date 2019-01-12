@@ -5,4 +5,6 @@ export const MESSAGE_SERVER_ERROR = {
   };
   
   export const access_token = "access_token";
-  export const page_login = "login"
+  export const page_login = "login";
+  export const isDashboard = "isDashboard";
+  export const token = "token";

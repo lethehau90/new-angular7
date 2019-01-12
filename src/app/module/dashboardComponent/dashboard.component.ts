@@ -7,8 +7,12 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 })
 
 export class DashBoardComponent implements OnInit, OnDestroy {
+
+   
+    constructor(){}
+   
     ngOnInit(): void {
-        
+      
     }   
     
     ngOnDestroy(): void {

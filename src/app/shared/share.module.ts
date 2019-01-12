@@ -14,7 +14,6 @@ import { DpDatePickerModule } from 'ng2-date-picker';
 import { NgxMaskModule } from 'ngx-mask';
 import { LoadingService } from './services/loading.service';
 import { NotifierService } from './services/notifier.service';
-import { EmitterService } from './services/emitter.service';
 import { WindowRef } from './services/window-ref.service';
 import { CachingService } from './services/caching.service';
 import { AuthGuard } from './helpers/auth-guard.service';
@@ -77,7 +76,6 @@ export class SharedModule {
       providers: [
         ScriptLoaderService,
         Helpers,
-        EmitterService,
         HttpClientService,
         LoadingService,
         NotifierService,
