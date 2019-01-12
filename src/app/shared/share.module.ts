@@ -24,6 +24,7 @@ import { ScriptLoaderService } from './services/script-loader.service';
 import { PaggingComponent } from './components/pagging-component/pagging-component';
 import { Helpers } from './helpers/helpers';
 import { layoutComponents } from './layout/pageComponent';
+import { CheckHaveDashBoardService } from './services/checkHaveDashboard.service';
 
 @NgModule({
   imports: [
@@ -81,6 +82,7 @@ export class SharedModule {
         NotifierService,
         WindowRef,
         CachingService,
+        CheckHaveDashBoardService,
         AuthGuard
       ]
     };

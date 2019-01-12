@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { IloginModel, LoginModel } from './shared/model/login.model';
 import { ITokenModel, TokenModel } from './shared/model/token.model';
 import { access_token, isDashboard, token } from 'src/app/shared/share.constants';
+import { CheckHaveDashBoardService } from 'src/app/shared/services/checkHaveDashboard.service';
 
 @Component({
     selector: 'login-component',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private _loginService: LoginService,
         private _cacheService: CachingService,
+        private _checkHaveDashboard : CheckHaveDashBoardService,
         private _router: Router
     ) {
        
@@ -41,16 +43,23 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.token = response;
             this._cacheService.sessionStorage.store(access_token, this.token.access_token);
             this._cacheService.sessionStorage.store(token, this.token);
-            this._cacheService.sessionStorage.store(isDashboard,true);
+            this.injectDashboard();
             this._router.navigate(['/dashboard']);
         })
     }
 
     ngOnInit(): void {
         this._initRequestForm();
-        this._cacheService.sessionStorage.store(isDashboard,false);
+        if(this._cacheService.sessionStorage.get(access_token)){
+            this._router.navigate(['/dashboard']);
+        }
     }
 
     ngOnDestroy(): void {
+    }
+
+    injectDashboard():void {
+        this._checkHaveDashboard.showDashboard();
+        this._cacheService.sessionStorage.store(isDashboard,true);
     }
 }

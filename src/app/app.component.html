@@ -1,9 +1,9 @@
 
-<ng-container *ngIf = "!this.isDashBoard">
+<ng-container *ngIf = "!this.isDashboard">
     <router-outlet></router-outlet>
 </ng-container>
 
-<ng-container *ngIf="this.isDashBoard">
+<ng-container *ngIf="this.isDashboard">
     <div  class="m-grid m-grid--hor m-grid--root m-page">
         <!-- BEGIN: Header -->
         <headerComponent></headerComponent>

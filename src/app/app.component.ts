@@ -4,6 +4,7 @@ import { Helpers } from './shared/helpers/helpers';
 import { LoadingService } from './shared/services/loading.service';
 import { CachingService } from './shared/services/caching.service';
 import { isDashboard } from './shared/share.constants';
+import { CheckHaveDashBoardService } from './shared/services/checkHaveDashboard.service';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,12 @@ import { isDashboard } from './shared/share.constants';
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
   constructor(
     private _script: ScriptLoaderService,
-    private _cachingService: CachingService
+    private _cachingService: CachingService,
+    private _checkHaveDashboardService: CheckHaveDashBoardService
   ) { }
 
-  private isDashBoard = false;
+  title = 'my-app';
+  private isDashboard = false;
   ngOnDestroy(): void {
 
   }
@@ -26,13 +29,17 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges
       'assets/js/scripts.bundle.js'], true).then((result) => {
         this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js'], true);
       });
-      this.isDashBoard = this._cachingService.sessionStorage.get(isDashboard);
+    this.isDashboard = this._cachingService.sessionStorage.get(isDashboard);
+    if (!this.isDashboard)
+      this._checkHaveDashboardService.isDashboard$.subscribe((res: boolean) => {
+        this.isDashboard = res;
+      })
+
   }
 
-  ngOnChanges():void {
-    debugger;
+  ngOnChanges(): void {
   }
-  title = 'my-app';
+
 
   ngAfterViewInit() {
 
