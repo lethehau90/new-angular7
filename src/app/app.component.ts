@@ -29,15 +29,18 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges
       'assets/js/scripts.bundle.js'], true).then((result) => {
         this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js'], true);
       });
-    this.isDashboard = this._cachingService.sessionStorage.get(isDashboard);
-    if (!this.isDashboard)
+    
+  
       this._checkHaveDashboardService.isDashboard$.subscribe((res: boolean) => {
         this.isDashboard = res;
       })
 
+      this.isDashboard = this._cachingService.sessionStorage.get(isDashboard);
+
   }
 
   ngOnChanges(): void {
+    console.log("ngOnchange")
   }
 
 

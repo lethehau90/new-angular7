@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthAPIInterceptor } from './shared/helpers/auth-api.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './shared/share.module';
+import { LoginComponent } from './module/loginComponent/login.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +28,12 @@ import { SharedModule } from './shared/share.module';
     SharedModule.forRoot()
   ],
   providers: [
-    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    // { provide: LocationStrategy, useClass: PathLocationStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: AuthAPIInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+  }
+ }

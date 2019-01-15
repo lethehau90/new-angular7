@@ -10,8 +10,8 @@ import { CheckHaveDashBoardService } from 'src/app/shared/services/checkHaveDash
 
 @Component({
     selector: 'login-component',
-    templateUrl: 'login.component.html',
-    styleUrls: ['login.component.scss']
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
@@ -23,10 +23,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private _loginService: LoginService,
         private _cacheService: CachingService,
-        private _checkHaveDashboard : CheckHaveDashBoardService,
+        private _checkHaveDashboardService : CheckHaveDashBoardService,
         private _router: Router
     ) {
-       
     }
 
     _initRequestForm(): void {
@@ -53,13 +52,17 @@ export class LoginComponent implements OnInit, OnDestroy {
         if(this._cacheService.sessionStorage.get(access_token)){
             this._router.navigate(['/dashboard']);
         }
+        else {
+            this._checkHaveDashboardService.hideDashboard();
+        }
     }
 
     ngOnDestroy(): void {
+        
     }
 
     injectDashboard():void {
-        this._checkHaveDashboard.showDashboard();
+        this._checkHaveDashboardService.showDashboard();
         this._cacheService.sessionStorage.store(isDashboard,true);
     }
 }
