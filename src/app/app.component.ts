@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { ScriptLoaderService } from './shared/services/script-loader.service';
 import { Helpers } from './shared/helpers/helpers';
 import { LoadingService } from './shared/services/loading.service';
@@ -11,15 +11,16 @@ import { CheckHaveDashBoardService } from './shared/services/checkHaveDashboard.
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges  {
   constructor(
     private _script: ScriptLoaderService,
     private _cachingService: CachingService,
-    private _checkHaveDashboardService: CheckHaveDashBoardService
-  ) { }
-
+    private _checkHaveDashboardService: CheckHaveDashBoardService,
+    private cdRef : ChangeDetectorRef
+  ) { 
+  }
   title = 'my-app';
-  private isDashboard = false;
+  isDashboard : any;
   ngOnDestroy(): void {
 
   }
@@ -30,23 +31,23 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges
         this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js'], true);
       });
     
-  
-      this._checkHaveDashboardService.isDashboard$.subscribe((res: boolean) => {
-        this.isDashboard = res;
-      })
-
-      this.isDashboard = this._cachingService.sessionStorage.get(isDashboard);
-
+      if(this._cachingService.sessionStorage.get(isDashboard)){
+        this.isDashboard = this._cachingService.sessionStorage.get(isDashboard);
+      }else {
+        this.isDashboard = false;
+      }
   }
 
   ngOnChanges(): void {
     console.log("ngOnchange")
   }
 
-
   ngAfterViewInit() {
 
     mLayout.initHeader();
-
+    this._checkHaveDashboardService.isDashboard$.subscribe((res: boolean) => {
+      this.isDashboard = res;
+    })
   }
+
 }

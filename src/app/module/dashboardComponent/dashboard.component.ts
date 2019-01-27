@@ -12,7 +12,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     constructor(){}
    
     ngOnInit(): void {
-      
+      //debugger;
     }   
     
     ngOnDestroy(): void {

@@ -53,7 +53,9 @@ export class LoginComponent implements OnInit, OnDestroy {
             this._router.navigate(['/dashboard']);
         }
         else {
-            this._checkHaveDashboardService.hideDashboard();
+            setTimeout(() => {
+                this._checkHaveDashboardService.hideDashboard();
+            }, 100);
         }
     }
 
