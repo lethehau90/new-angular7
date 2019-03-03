@@ -25,9 +25,12 @@ import { PaggingComponent } from './components/pagging-component/pagging-compone
 import { Helpers } from './helpers/helpers';
 import { layoutComponents } from './layout/pageComponent';
 import { CheckHaveDashBoardService } from './services/checkHaveDashboard.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
+    CommonModule,
+    RouterModule,
     CommonModule,
     FormsModule,
     NgxPaginationModule,

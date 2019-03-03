@@ -24,13 +24,30 @@ export const MESSAGE_SERVER_ERROR = {
         icon: 'glyphicon glyphicon-certificate',
         name: 'User',
         router: '/user',
-        isOpenMenu: false,
+        isOpenMenu: true,
         roles: ['Admin'],
         child: [
             {
                 nameChild: 'List user',
                 class: 'inactive',
-                routerChild: '/page/list-user',
+                routerChild: '/list-user',
+                isSelected: false,
+                roles: ['Admin']
+            }
+        ]
+    },
+    {
+        class: 'm-menu__link m-menu__toggle',
+        icon: 'glyphicon glyphicon-certificate',
+        name: 'Role',
+        router: '/role',
+        isOpenMenu: false,
+        roles: ['Admin'],
+        child: [
+            {
+                nameChild: 'List roles',
+                class: 'inactive',
+                routerChild: '/list-role',
                 isSelected: false,
                 roles: ['Admin']
             }
