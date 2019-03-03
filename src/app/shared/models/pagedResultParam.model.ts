@@ -6,4 +6,8 @@ export interface IPagedResultParam {
 export class PagedResultParam {
     page: number;
     pageSize: number;
+    constructor(){
+        this.page = 1;
+        this.pageSize = 20;
+    }
 }

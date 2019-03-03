@@ -1,10 +1,9 @@
-
-<ng-container *ngIf = "!this.isDashboard">
+<ng-container *ngIf="!this.isDashboard">
     <router-outlet></router-outlet>
 </ng-container>
 
 <ng-container *ngIf="this.isDashboard">
-    <div  class="m-grid m-grid--hor m-grid--root m-page">
+    <div class="m-grid m-grid--hor m-grid--root m-page">
         <!-- BEGIN: Header -->
         <headerComponent></headerComponent>
         <!-- END: Header -->
@@ -25,13 +24,13 @@
                 <subheaderComponent></subheaderComponent>
                 <!-- END: Subheader -->
                 <div class="m-content">
-    
-                    <router-outlet></router-outlet>
-    
+                    <div class="m-portlet m-portlet--mobile">
+                        <router-outlet></router-outlet>
+                    </div>
                 </div>
             </div>
         </div>
-    
+
         <!-- end:: Body -->
         <!-- begin::Footer -->
         <footerComponent></footerComponent>

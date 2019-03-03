@@ -47,7 +47,7 @@ export const MESSAGE_SERVER_ERROR = {
             {
                 nameChild: 'List roles',
                 class: 'inactive',
-                routerChild: '/list-role',
+                routerChild: '/role',
                 isSelected: false,
                 roles: ['Admin']
             }

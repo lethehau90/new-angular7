@@ -18,6 +18,7 @@ export class AsideMenuComponent implements OnInit, OnDestroy {
         const navigationSubscription = this._router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 console.log('Url :', event.url);
+                console.log('Url :', event);
                 this.checkSelectedRouter(event.url);
                 //navigationSubscription.unsubscribe();
             }

@@ -1,0 +1,1 @@
+export const apiGetListRolePaging = "/api/appRole/getlistpaging";
