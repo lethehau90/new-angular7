@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { RoleService } from '../../shared/services/role.service';
-import { IRoleModel } from '../../shared/models/role.model';
+import { IRoleModel, RoleModel } from '../../shared/models/role.model';
 import { PagedResultParam } from 'src/app/shared/models/pagedResultParam.model';
 import { forkJoin } from 'rxjs';
+import { PaginationModel } from 'src/app/shared/models/pagination.model';
 
 @Component({
     selector: 'list-role-component',
@@ -17,7 +18,7 @@ export class ListRoleComponent implements OnInit, OnDestroy {
     }
 
     private paramUser = new PagedResultParam();
-    public dataRole: IRoleModel;
+    public dataRole: PaginationModel<RoleModel[]> = new PaginationModel<RoleModel[]>();
 
     ngOnInit(): void {
         this.initCommonRequestRole();
@@ -27,13 +28,14 @@ export class ListRoleComponent implements OnInit, OnDestroy {
 
     }
 
-    private loadFillDataSuccess(responseData): void {
-        this.dataRole = responseData[0];
+    private loadFillDataSuccess(requestMutiData): void {
+        this.dataRole = requestMutiData[0] ? requestMutiData[0] : [];
+        console.log(this.dataRole)
     }
 
     initCommonRequestRole(): void {
-        forkJoin(this._roleService.getListRolePaging(this.paramUser)).subscribe(responseData => {
-            this.loadFillDataSuccess(responseData);
+        forkJoin(this._roleService.getListRolePaging(this.paramUser)).subscribe(requestMutiData => {
+            this.loadFillDataSuccess(requestMutiData);
         })
     }
 

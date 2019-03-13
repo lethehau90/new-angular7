@@ -114,16 +114,45 @@
     <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded">
         <table class="m-datatable__table">
             <thead class="m-datatable__head">
-                <tr class="m-datatable__row">
-                    <th class="m-datatable__cell m-datatable__cell--sort">Name</th>
-                    <th class="m-datatable__cell m-datatable__cell--sort">Type Mode</th>
+                <tr class="m-datatable__row" style="left: 0px;">
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 132px;">Tên</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 132px;">Mô tả</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 132px;">Chức năng</span></th>
                 </tr>
             </thead>
-            <tbody class="no-data-pr">
-                <tr>
-                    <td colspan="20">No data available in table</td>
-                </tr>
-            </tbody>
+            <ng-container *ngIf="(this.dataRole.Count == 0) else dataBody">
+                <tbody class="no-data-pr">
+                    <tr>
+                        <td colspan="20">No data available in table</td>
+                    </tr>
+                </tbody>
+            </ng-container>
+            <ng-template #dataBody>
+                <tbody class="m-datatable__body">
+                    <tr *ngFor="let item of dataRole.Items; let i = index" [attr.data-row]="i" class="m-datatable__row"
+                        [ngClass]="{'m-datatable__row--even': (i%2!=0)}" style="left: 0px;">
+                        <td class="m-datatable__cell"><span style="width: 132px">{{item.Name}}</span></td>
+                        <td class="m-datatable__cell"><span style="width: 132px">{{item.Description}}</span></td>
+                        <td data-field="Actions" class="m-datatable__cell m-datatable__cell--sort">
+                            <span style="overflow: visible; position: relative; width: 110px;">
+                                <div class="dropdown ">
+                                    <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
+                                        data-toggle="dropdown"> <i class="la la-ellipsis-h"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
+                                        <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>
+                                        <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
+                                    </div>
+                                </div>
+                                <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill"
+                                    title="View "> <i class="la la-edit"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-template>
         </table>
     </div>
     <!--end: Datatable -->

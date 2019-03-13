@@ -1,11 +1,11 @@
 
 export interface IPaginationModel<T> {
-    PageIndex: number,
-    PageSize: number,
+    PageIndex?: number,
+    PageSize?: number,
     Count: number,
-    TotalPage: number,
-    TotalRows: number,
-    MaxPage: number,
+    TotalPage?: number,
+    TotalRows?: number,
+    MaxPage?: number,
     Items : T
   }
 
